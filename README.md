@@ -107,46 +107,58 @@ Risorse esterne               →  Network-First
  
 ---
  
-## 🚀 Deploy su Cloudflare Pages
+## 🚀 Deploy su GitHub Pages
  
-### 1. Fork e connetti il repository
+### 1. Crea il repository
  
 ```bash
 # Clona il repository
 git clone https://github.com/tuo-username/beer-cellar.git
 cd beer-cellar
+ 
+# Assicurati che tutti i file siano nella root
+# index.html, manifest.json, sw.js, _headers, icons/
+git add .
+git commit -m "feat: initial PWA setup"
+git push origin main
 ```
  
-Nel dashboard Cloudflare Pages:
-1. **Create a project** → Connetti il repository GitHub
-2. **Build settings**: lascia tutto vuoto — nessun build command, nessun framework
-3. **Root directory**: `/` (root del repository)
-4. Deploy
+### 2. Abilita GitHub Pages
  
-### 2. Verifica il file `_headers`
+1. Vai su **Settings** → **Pages** nel tuo repository
+2. Sotto *Source* seleziona **Deploy from a branch**
+3. Branch: **`main`** — Folder: **`/ (root)`**
+4. Clicca **Save**
  
-Il file `_headers` nella root è **critico** per il funzionamento della PWA:
- 
+Dopo qualche minuto l'app sarà disponibile su:
 ```
-/sw.js
-  Cache-Control: no-cache, no-store, must-revalidate
-  Content-Type: application/javascript; charset=utf-8
- 
-/manifest.json
-  Cache-Control: public, max-age=3600
-  Content-Type: application/manifest+json; charset=utf-8
+https://tuo-username.github.io/beer-cellar/
 ```
  
-> ⚠️ Senza questo file il Service Worker non si registra e l'app non è installabile.
+### 3. Aggiorna i path nel manifest
  
-### 3. Installa la PWA
+GitHub Pages serve l'app in una sottodirectory (`/beer-cellar/`), quindi aggiorna `manifest.json` di conseguenza:
+ 
+```json
+{
+  "start_url": "/beer-cellar/index.html?utm_source=pwa",
+  "scope": "/beer-cellar/",
+  "shortcuts": [
+    { "url": "/beer-cellar/index.html?action=add" },
+    { "url": "/beer-cellar/index.html?action=stats" }
+  ]
+}
+```
+ 
+> 💡 Se usi un dominio custom (Settings → Pages → Custom domain) puoi lasciare i path relativi `./` senza modifiche.
+ 
+### 4. Installa la PWA
  
 | Piattaforma | Procedura |
 |---|---|
 | **Android** (Chrome) | Banner automatico dopo qualche secondo → *Installa* |
 | **iOS** (Safari) | Condividi `⎙` → *Aggiungi a schermata Home* |
 | **Desktop** (Chrome/Edge) | Icona `⊕` nella barra indirizzi → *Installa* |
- 
 ---
  
 ## 🛠 Sviluppo locale
