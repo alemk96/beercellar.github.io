@@ -11,7 +11,7 @@
  
 <br/>
  
-> Traccia, valuta e scopri le birre artigianali del birrificio **50&50 Craft Brewery** —  
+> Traccia, valuta e scopri le birre artigianali a partire dal birrificio **50&50 Craft Brewery** —  
 > tutto offline, tutto nel browser, zero backend.
  
 <br/>
