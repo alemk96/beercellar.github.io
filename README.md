@@ -26,7 +26,7 @@
 ## ✨ Funzionalità
  
 ### 🗂 Gestione Cantina
-- **Catalogo completo** — tutte le birre 50&50 precaricate con schede dettagliate
+- **Catalogo completo** — tutte le birre 50&50 precaricate con schede dettagliate; in futuro potrei aggiornare con altri Birrifici Artigianali o altre entries estemporanee maaaaa... puoi farlo anche te ;)
 - **Aggiungi birre personalizzate** — nome, birrificio, origine, ABV, IBU, colore
 - **Modifica ed elimina** — aggiornamento completo di ogni scheda
 - **Categorie** — 12 stili (Lager, IPA, Stout, Weizen, Sour, Trappista, e altri)
@@ -185,12 +185,6 @@ Chrome DevTools → Application
  
 ---
  
-## 🍺 Il Birrificio
- 
-**50&50 Craft Brewery** è un birrificio artigianale di Varese, Italia. Il nome nasce dalla società al 50% tra i due fondatori. Le birre precaricate nell'app coprono l'intero catalogo ufficiale con descrizioni, storia e profili organolettici curati.
- 
----
- 
 ## 📄 Licenza
  
 Distribuito sotto licenza **MIT**. Vedi [`LICENSE`](LICENSE) per i dettagli.
@@ -199,6 +193,6 @@ Distribuito sotto licenza **MIT**. Vedi [`LICENSE`](LICENSE) per i dettagli.
  
 <div align="center">
  
-Fatto con ❤️ e 🍺 &nbsp;·&nbsp; [50&50 Craft Brewery](https://www.cinquantacinquanta.it)
+Fatto con ❤️ e 🍺 &nbsp;·&nbsp; 
  
 </div>
