@@ -7,7 +7,6 @@
 [![PWA](https://img.shields.io/badge/PWA-ready-F07828?style=for-the-badge&logo=pwa&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)
 [![HTML5](https://img.shields.io/badge/HTML5-single--file-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 [![JavaScript](https://img.shields.io/badge/JavaScript-vanilla-F4C840?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![Cloudflare Pages](https://img.shields.io/badge/Cloudflare-Pages-F6821F?style=for-the-badge&logo=cloudflare&logoColor=white)](https://pages.cloudflare.com)
 [![License](https://img.shields.io/badge/license-MIT-8ABF40?style=for-the-badge)](LICENSE)
  
 <br/>
