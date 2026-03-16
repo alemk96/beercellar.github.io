@@ -16,7 +16,7 @@
  
 <br/>
  
-![Beer Cellar Preview](https://via.placeholder.com/720x400/130F08/F07828?text=Beer+Cellar+Preview)
+![Beer Cellar Preview]([https://via.placeholder.com/720x400/130F08/F07828?text=Beer+Cellar+Preview](https://i.postimg.cc/P594Wfb4/Immagine-2026-03-16-213139.png))
 <!-- Sostituisci con uno screenshot reale dell'app -->
  
 </div>
