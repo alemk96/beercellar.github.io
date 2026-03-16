@@ -69,6 +69,7 @@
 ```
 beer-cellar/
 ├── index.html              # App shell completa (single-file SPA)
+├── style.css               # style CSS style
 ├── manifest.json           # Web App Manifest
 ├── sw.js                   # Service Worker
 ├── _headers                # Cloudflare Pages — header HTTP
