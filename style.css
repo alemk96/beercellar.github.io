@@ -2,28 +2,28 @@
    DESIGN TOKENS — Taproom Industrial Craft
    ═══════════════════════════════════════════════════════════ */
 :root {
-  /* Dark warm brewery palette */
-  --bg:           #130F08;
-  --bg-2:         #1C1610;
-  --surface:      #241A0C;
-  --surface-2:    #2E2214;
-  --surface-3:    #382A1C;
+  /* Brewery palette — legno scuro, rame, schiuma e ottone */
+  --bg:           #120B08;
+  --bg-2:         #1A110D;
+  --surface:      #261814;
+  --surface-2:    #33211B;
+  --surface-3:    #422D24;
 
-  --amber:        #F07828;   /* hot amber — accento primario */
-  --amber-light:  #F8A050;   /* amber chiaro */
-  --amber-deep:   #B85818;   /* amber scuro */
-  --gold:         #F4C840;   /* oro brillante */
-  --hops:         #8ABF40;   /* verde luppolo */
-  --ruby:         #D4524A;   /* rosso birra scura */
-  --cream:        #EEE4C8;   /* testo principale */
-  --muted:        #8A7A64;   /* testo secondario */
-  --barrel:       #5A4A38;   /* slider / scrollbar */
-  --foam:         #F8F2E4;   /* testo bianco caldo */
-  --copper:       #C87840;   /* rame */
+  --amber:        #C96A2B;   /* rame ambrato */
+  --amber-light:  #E29A52;   /* miele / malto */
+  --amber-deep:   #8E431C;   /* legno tostato */
+  --gold:         #D8AA3D;   /* ottone */
+  --hops:         #6F8F3A;   /* verde luppolo più spento */
+  --ruby:         #A94E3F;   /* rosso mogano */
+  --cream:        #F1E3C4;   /* testo principale */
+  --muted:        #A89273;   /* testo secondario caldo */
+  --barrel:       #6A4C3B;   /* legno botte */
+  --foam:         #FAF1DE;   /* schiuma */
+  --copper:       #B87333;   /* rame */
 
-  --border:       rgba(244,200,64,0.16);
-  --border-subtle:rgba(244,200,64,0.07);
-  --border-hover: rgba(244,200,64,0.32);
+  --border:       rgba(216,170,61,0.18);
+  --border-subtle:rgba(216,170,61,0.08);
+  --border-hover: rgba(216,170,61,0.34);
 
   --font-display: 'Bebas Neue', 'Barlow Condensed', sans-serif;
   --font-sub:     'Barlow Condensed', sans-serif;
