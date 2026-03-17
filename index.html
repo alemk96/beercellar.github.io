@@ -1,308 +1,313 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- ═══ PWA — Manifest & Theme ═══ -->
-<link rel="manifest" href="manifest.json"/>
-<meta name="theme-color" content="#F07828"/>
-<meta name="mobile-web-app-capable" content="yes"/>
-<meta name="application-name" content="Beer Cellar"/>
+  <!-- ═══ PWA — Manifest & Theme ═══ -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#F07828" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="application-name" content="Beer Cellar" />
 
-<!-- ═══ PWA — Apple / iOS ═══ -->
-<meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-<meta name="apple-mobile-web-app-title" content="Beer Cellar"/>
-<link rel="apple-touch-icon" href="icons/icon-192.png"/>
-<link rel="apple-touch-icon" sizes="512x512" href="icons/icon-512.png"/>
+  <!-- ═══ PWA — Apple / iOS ═══ -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Beer Cellar" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" sizes="512x512" href="icons/icon-512.png" />
 
-<!-- ═══ PWA — Favicon & misc ═══ -->
-<link rel="icon" type="image/svg+xml" href="icons/icon.svg"/>
-<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png"/>
-<meta name="description" content="La tua cantina digitale per birre artigianali — traccia, valuta e scopri."/>
-<meta name="keywords" content="birra artigianale, craft beer, cantina, cellar, valutazione"/>
-<meta name="author" content="50&50 Craft Brewery"/>
-<title>Beer Cellar 🍺</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-<script src="index.js" defer></script>
-<link rel="stylesheet" href="style.css">
+  <!-- ═══ PWA — Favicon & misc ═══ -->
+  <link rel="icon" type="image/svg+xml" href="icons/icon.svg" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
+  <meta name="description" content="La tua cantina digitale per birre artigianali — traccia, valuta e scopri." />
+  <meta name="keywords" content="birra artigianale, craft beer, cantina, cellar, valutazione" />
+  <meta name="author" content="50&50 Craft Brewery" />
+  <title>Beer Cellar 🍺</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Barlow+Condensed:wght@400;600;700;800&display=swap"
+    rel="stylesheet" />
+  <script src="index.js" defer></script>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<div id="app">
+  <div id="app">
 
-  <!-- ═══ HOME VIEW ═══ -->
-  <div id="view-home" class="view">
-    <div class="app-bar">
-      <div>
-        <div class="app-bar-title">Beer Cellar</div>
-        <div class="app-bar-subtitle">Birrifici Artigianali</div>
-      </div>
-      <div style="flex:1"></div>
-      <div style="position:relative">
-        <button class="icon-btn" id="sort-toggle" title="Ordina">⇅</button>
-        <div class="sort-dropdown" id="sort-dropdown">
-          <div class="sort-option active" data-sort="date_desc">📅  Data aggiunta</div>
-          <div class="sort-option" data-sort="rating_desc">⭐  Voto</div>
-          <div class="sort-option" data-sort="name_asc">🔤  Nome A–Z</div>
-          <div class="sort-option" data-sort="brewery_asc">🏭  Birrificio</div>
+    <!-- ═══ HOME VIEW ═══ -->
+    <div id="view-home" class="view">
+      <div class="app-bar">
+        <div>
+          <div class="app-bar-title">Beer Cellar</div>
+          <div class="app-bar-subtitle">Birrifici Artigianali</div>
+        </div>
+        <div style="flex:1"></div>
+        <div style="position:relative">
+          <button class="icon-btn" id="sort-toggle" title="Ordina">⇅</button>
+          <div class="sort-dropdown" id="sort-dropdown">
+            <div class="sort-option active" data-sort="date_desc">📅 Data aggiunta</div>
+            <div class="sort-option" data-sort="rating_desc">⭐ Voto</div>
+            <div class="sort-option" data-sort="name_asc">🔤 Nome A–Z</div>
+            <div class="sort-option" data-sort="brewery_asc">🏭 Birrificio</div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="search-wrap">
-      <div class="search-box">
-        <span class="icon">🔍</span>
-        <input id="search-input" type="search" placeholder="Cerca birra, birrificio, origine…" autocomplete="off"/>
-        <button class="search-clear" id="search-clear">✕</button>
+      <div class="search-wrap">
+        <div class="search-box">
+          <span class="icon">🔍</span>
+          <input id="search-input" type="search" placeholder="Cerca birra, birrificio, origine…" autocomplete="off" />
+          <button class="search-clear" id="search-clear">✕</button>
+        </div>
       </div>
+
+      <div class="chip-row" id="category-chips"></div>
+
+      <div class="filter-bar" id="filter-bar">
+        <button class="filter-chip active" data-filter="all">🍺 Tutte</button>
+        <button class="filter-chip" data-filter="tried">✅ Provate</button>
+        <button class="filter-chip" data-filter="favorites">❤️ Preferite</button>
+      </div>
+
+      <div class="list-toolbar">
+        <span class="beer-count" id="beer-count"></span>
+      </div>
+
+      <div class="beer-list" id="beer-list"></div>
     </div>
 
-    <div class="chip-row" id="category-chips"></div>
-
-    <div class="filter-bar" id="filter-bar">
-      <button class="filter-chip active" data-filter="all">🍺 Tutte</button>
-      <button class="filter-chip" data-filter="tried">✅ Provate</button>
-      <button class="filter-chip" data-filter="favorites">❤️ Preferite</button>
+    <!-- ═══ DETAIL VIEW ═══ -->
+    <div id="view-detail" class="view">
+      <div class="app-bar">
+        <button class="icon-btn" id="detail-back">←</button>
+        <div style="flex:1"></div>
+        <button class="icon-btn" id="detail-fav" title="Preferita">🤍</button>
+        <button class="icon-btn" id="detail-edit" title="Modifica">✏️</button>
+        <button class="icon-btn danger" id="detail-delete" title="Elimina">🗑</button>
+      </div>
+      <div id="detail-content"></div>
     </div>
 
-    <div class="list-toolbar">
-      <span class="beer-count" id="beer-count"></span>
-    </div>
+    <!-- ═══ ADD/EDIT VIEW ═══ -->
+    <div id="view-add" class="view">
+      <div class="app-bar">
+        <button class="icon-btn" id="add-back">←</button>
+        <div class="app-bar-title" id="add-title">Nuova birra</div>
+      </div>
 
-    <div class="beer-list" id="beer-list"></div>
-  </div>
-
-  <!-- ═══ DETAIL VIEW ═══ -->
-  <div id="view-detail" class="view">
-    <div class="app-bar">
-      <button class="icon-btn" id="detail-back">←</button>
-      <div style="flex:1"></div>
-      <button class="icon-btn" id="detail-fav" title="Preferita">🤍</button>
-      <button class="icon-btn" id="detail-edit" title="Modifica">✏️</button>
-      <button class="icon-btn danger" id="detail-delete" title="Elimina">🗑</button>
-    </div>
-    <div id="detail-content"></div>
-  </div>
-
-  <!-- ═══ ADD/EDIT VIEW ═══ -->
-  <div id="view-add" class="view">
-    <div class="app-bar">
-      <button class="icon-btn" id="add-back">←</button>
-      <div class="app-bar-title" id="add-title">Nuova birra</div>
-    </div>
-
-    <div class="form-section">
-      <div class="form-section-title">Informazioni principali</div>
-      <div class="form-card">
-        <div class="field-group">
-          <label class="field-label">Nome birra *</label>
-          <input class="field-input" id="f-name" type="text" placeholder="es. Punk IPA"/>
-        </div>
-        <div class="field-group">
-          <label class="field-label">Birrificio</label>
-          <input class="field-input" id="f-brewery" type="text" placeholder="es. BrewDog"/>
-        </div>
-        <div class="field-group">
-          <label class="field-label">Origine (paese / regione)</label>
-          <input class="field-input" id="f-origin" type="text" placeholder="es. Scozia"/>
-        </div>
-        <div class="field-group">
-          <label class="field-label">Categoria</label>
-          <div class="cat-selector" id="cat-selector">
-            <span class="cat-selector-emoji" id="cat-sel-emoji">🍺</span>
-            <div class="cat-selector-info">
-              <div class="cat-selector-label">Seleziona categoria</div>
-              <div class="cat-selector-value" id="cat-sel-name">Lager</div>
+      <div class="form-section">
+        <div class="form-section-title">Informazioni principali</div>
+        <div class="form-card">
+          <div class="field-group">
+            <label class="field-label">Nome birra *</label>
+            <input class="field-input" id="f-name" type="text" placeholder="es. Punk IPA" />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Birrificio</label>
+            <input class="field-input" id="f-brewery" type="text" placeholder="es. BrewDog" />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Origine (paese / regione)</label>
+            <input class="field-input" id="f-origin" type="text" placeholder="es. Scozia" />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Categoria</label>
+            <div class="cat-selector" id="cat-selector">
+              <span class="cat-selector-emoji" id="cat-sel-emoji">🍺</span>
+              <div class="cat-selector-info">
+                <div class="cat-selector-label">Seleziona categoria</div>
+                <div class="cat-selector-value" id="cat-sel-name">Lager</div>
+              </div>
+              <span class="cat-selector-arrow">▾</span>
             </div>
-            <span class="cat-selector-arrow">▾</span>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="form-section">
-      <div class="form-section-title">Dati tecnici</div>
-      <div class="form-card">
-        <div class="field-row">
+      <div class="form-section">
+        <div class="form-section-title">Dati tecnici</div>
+        <div class="form-card">
+          <div class="field-row">
+            <div class="field-group">
+              <label class="field-label">ABV (%)</label>
+              <input class="field-input" id="f-abv" type="number" step="0.1" min="0" max="99" placeholder="5.0" />
+            </div>
+            <div class="field-group">
+              <label class="field-label">IBU</label>
+              <input class="field-input" id="f-ibu" type="number" min="0" max="999" placeholder="30" />
+            </div>
+          </div>
           <div class="field-group">
-            <label class="field-label">ABV (%)</label>
-            <input class="field-input" id="f-abv" type="number" step="0.1" min="0" max="99" placeholder="5.0"/>
+            <label class="field-label">Colore</label>
+            <input class="field-input" id="f-color" type="text" placeholder="es. Ambrata intensa con testa avorio" />
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">La tua valutazione</div>
+        <div class="form-card">
+          <div class="rating-block">
+            <div class="star-picker" id="form-star-picker"></div>
+            <div class="rating-label" id="form-rating-label">Nessuna valutazione</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">Profilo &amp; Storia</div>
+        <div class="form-card">
+          <div class="field-group">
+            <label class="field-label">Profilo organolettico</label>
+            <textarea class="field-textarea" id="f-desc" placeholder="Aroma, sapore, corpo, finale…"></textarea>
           </div>
           <div class="field-group">
-            <label class="field-label">IBU</label>
-            <input class="field-input" id="f-ibu" type="number" min="0" max="999" placeholder="30"/>
+            <label class="field-label">Storia e curiosità</label>
+            <textarea class="field-textarea" id="f-history" placeholder="Origine, aneddoti, tradizioni…"></textarea>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Note personali</label>
+            <textarea class="field-textarea" id="f-notes" placeholder="Abbinamenti, occasioni, ricordi…"
+              style="min-height:60px"></textarea>
           </div>
         </div>
-        <div class="field-group">
-          <label class="field-label">Colore</label>
-          <input class="field-input" id="f-color" type="text" placeholder="es. Ambrata intensa con testa avorio"/>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">Opzioni</div>
+        <div class="form-card">
+          <div class="toggle-row">
+            <span class="toggle-icon">✅</span>
+            <span class="toggle-label">Già provata</span>
+            <label class="toggle"><input type="checkbox" id="f-tried" /><span class="toggle-slider"></span></label>
+          </div>
+          <div class="toggle-row">
+            <span class="toggle-icon">❤️</span>
+            <span class="toggle-label">Preferita</span>
+            <label class="toggle"><input type="checkbox" id="f-fav" /><span class="toggle-slider"></span></label>
+          </div>
         </div>
+      </div>
+
+      <div class="form-section" style="padding-bottom:20px">
+        <button class="save-btn" id="save-btn" disabled>
+          <span id="save-icon">＋</span>
+          <span id="save-label">Aggiungi birra</span>
+        </button>
       </div>
     </div>
 
-    <div class="form-section">
-      <div class="form-section-title">La tua valutazione</div>
-      <div class="form-card">
-        <div class="rating-block">
-          <div class="star-picker" id="form-star-picker"></div>
-          <div class="rating-label" id="form-rating-label">Nessuna valutazione</div>
+    <!-- ═══ STATS VIEW ═══ -->
+    <div id="view-stats" class="view">
+      <div class="app-bar">
+        <div>
+          <div class="app-bar-title">50&50 Cellar</div>
+          <div class="app-bar-subtitle">Le tue statistiche</div>
         </div>
       </div>
+
+      <div class="stats-header-bar">
+        <span class="stats-header-label">Panoramica</span>
+        <button class="export-btn" id="import-btn" title="Importa dati cantina">
+          <span>📂</span> Importa
+        </button>
+        <button class="export-btn" id="export-btn" title="Esporta dati cantina">
+          <span>💾</span> Esporta
+        </button>
+        <input type="file" id="import-file-input" accept=".json,application/json" style="display:none" />
+      </div>
+
+      <div class="kpi-grid" id="kpi-grid"></div>
+      <div class="stats-section" id="stats-top"></div>
+      <div class="stats-section" id="stats-bars"></div>
     </div>
 
-    <div class="form-section">
-      <div class="form-section-title">Profilo &amp; Storia</div>
-      <div class="form-card">
-        <div class="field-group">
-          <label class="field-label">Profilo organolettico</label>
-          <textarea class="field-textarea" id="f-desc" placeholder="Aroma, sapore, corpo, finale…"></textarea>
-        </div>
-        <div class="field-group">
-          <label class="field-label">Storia e curiosità</label>
-          <textarea class="field-textarea" id="f-history" placeholder="Origine, aneddoti, tradizioni…"></textarea>
-        </div>
-        <div class="field-group">
-          <label class="field-label">Note personali</label>
-          <textarea class="field-textarea" id="f-notes" placeholder="Abbinamenti, occasioni, ricordi…" style="min-height:60px"></textarea>
-        </div>
+    <!-- ── Bottom Nav ── -->
+    <nav class="bottom-nav" id="bottom-nav">
+      <button class="nav-item active" data-view="home">
+        <span class="nav-icon">🍺</span>
+        <span>Cantina</span>
+      </button>
+      <button class="nav-item" data-view="stats">
+        <span class="nav-icon">📊</span>
+        <span>Statistiche</span>
+      </button>
+    </nav>
+
+    <!-- FAB -->
+    <button class="fab" id="fab" title="Aggiungi birra">＋</button>
+  </div>
+
+  <!-- ═══ CATEGORY SHEET ═══ -->
+  <div class="overlay" id="cat-overlay">
+    <div class="sheet">
+      <div class="sheet-handle"></div>
+      <div class="sheet-title">Categoria</div>
+      <div class="sheet-list" id="cat-sheet-list"></div>
+    </div>
+  </div>
+
+  <!-- ═══ IMPORT DIALOG ═══ -->
+  <div class="dialog-overlay" id="import-dialog">
+    <div class="dialog">
+      <div class="dialog-icon">📂</div>
+      <div class="dialog-title">Importa cantina</div>
+      <div class="dialog-text" id="import-dialog-text">Come vuoi procedere con i dati importati?</div>
+      <div class="dialog-actions" style="flex-direction:column;gap:8px">
+        <button class="dialog-btn" id="import-merge" style="border-color:rgba(240,120,40,0.35);color:var(--amber)">
+          🔀 Unisci (mantieni esistenti)
+        </button>
+        <button class="dialog-btn danger" id="import-replace">
+          ⚠️ Sostituisci tutto
+        </button>
+        <button class="dialog-btn" id="import-cancel">Annulla</button>
       </div>
     </div>
+  </div>
 
-    <div class="form-section">
-      <div class="form-section-title">Opzioni</div>
-      <div class="form-card">
-        <div class="toggle-row">
-          <span class="toggle-icon">✅</span>
-          <span class="toggle-label">Già provata</span>
-          <label class="toggle"><input type="checkbox" id="f-tried"/><span class="toggle-slider"></span></label>
-        </div>
-        <div class="toggle-row">
-          <span class="toggle-icon">❤️</span>
-          <span class="toggle-label">Preferita</span>
-          <label class="toggle"><input type="checkbox" id="f-fav"/><span class="toggle-slider"></span></label>
-        </div>
+  <!-- ═══ DELETE DIALOG ═══ -->
+  <div class="dialog-overlay" id="delete-dialog">
+    <div class="dialog">
+      <div class="dialog-icon">🗑</div>
+      <div class="dialog-title">Elimina birra</div>
+      <div class="dialog-text" id="delete-dialog-text">Vuoi davvero eliminarla?</div>
+      <div class="dialog-actions">
+        <button class="dialog-btn" id="delete-cancel">Annulla</button>
+        <button class="dialog-btn danger" id="delete-confirm">Elimina</button>
       </div>
     </div>
+  </div>
 
-    <div class="form-section" style="padding-bottom:20px">
-      <button class="save-btn" id="save-btn" disabled>
-        <span id="save-icon">＋</span>
-        <span id="save-label">Aggiungi birra</span>
-      </button>
+  <!-- ═══ SNACKBAR ═══ -->
+  <div id="snackbar"></div>
+
+
+
+
+  <!-- ═══ PWA — Offline bar ═══ -->
+  <div id="offline-bar">📡 Sei offline — la cantina è comunque disponibile</div>
+
+  <!-- ═══ PWA — Install banner ═══ -->
+  <div id="pwa-install-banner">
+    <span class="pwa-icon">🍺</span>
+    <div class="pwa-text">
+      <div class="pwa-title">Aggiungi alla Home</div>
+      <div class="pwa-sub">Accesso rapido, funziona offline</div>
     </div>
+    <button class="pwa-btn" id="pwa-install-btn">Installa</button>
+    <button class="pwa-close" id="pwa-install-close">✕</button>
   </div>
 
-  <!-- ═══ STATS VIEW ═══ -->
-  <div id="view-stats" class="view">
-    <div class="app-bar">
-      <div>
-        <div class="app-bar-title">50&50 Cellar</div>
-        <div class="app-bar-subtitle">Le tue statistiche</div>
-      </div>
-    </div>
-
-    <div class="stats-header-bar">
-      <span class="stats-header-label">Panoramica</span>
-      <button class="export-btn" id="import-btn" title="Importa dati cantina">
-        <span>📂</span> Importa
-      </button>
-      <button class="export-btn" id="export-btn" title="Esporta dati cantina">
-        <span>💾</span> Esporta
-      </button>
-      <input type="file" id="import-file-input" accept=".json,application/json" style="display:none"/>
-    </div>
-
-    <div class="kpi-grid" id="kpi-grid"></div>
-    <div class="stats-section" id="stats-top"></div>
-    <div class="stats-section" id="stats-bars"></div>
+  <!-- ═══ PWA — Update toast ═══ -->
+  <div id="pwa-update-toast">
+    <span>🔄</span>
+    <span class="update-text">Nuova versione disponibile!</span>
+    <button class="update-btn" id="pwa-update-btn">Aggiorna</button>
   </div>
-
-  <!-- ── Bottom Nav ── -->
-  <nav class="bottom-nav" id="bottom-nav">
-    <button class="nav-item active" data-view="home">
-      <span class="nav-icon">🍺</span>
-      <span>Cantina</span>
-    </button>
-    <button class="nav-item" data-view="stats">
-      <span class="nav-icon">📊</span>
-      <span>Statistiche</span>
-    </button>
-  </nav>
-
-  <!-- FAB -->
-  <button class="fab" id="fab" title="Aggiungi birra">＋</button>
-</div>
-
-<!-- ═══ CATEGORY SHEET ═══ -->
-<div class="overlay" id="cat-overlay">
-  <div class="sheet">
-    <div class="sheet-handle"></div>
-    <div class="sheet-title">Categoria</div>
-    <div class="sheet-list" id="cat-sheet-list"></div>
-  </div>
-</div>
-
-<!-- ═══ IMPORT DIALOG ═══ -->
-<div class="dialog-overlay" id="import-dialog">
-  <div class="dialog">
-    <div class="dialog-icon">📂</div>
-    <div class="dialog-title">Importa cantina</div>
-    <div class="dialog-text" id="import-dialog-text">Come vuoi procedere con i dati importati?</div>
-    <div class="dialog-actions" style="flex-direction:column;gap:8px">
-      <button class="dialog-btn" id="import-merge"
-        style="border-color:rgba(240,120,40,0.35);color:var(--amber)">
-        🔀 Unisci (mantieni esistenti)
-      </button>
-      <button class="dialog-btn danger" id="import-replace">
-        ⚠️ Sostituisci tutto
-      </button>
-      <button class="dialog-btn" id="import-cancel">Annulla</button>
-    </div>
-  </div>
-</div>
-
-<!-- ═══ DELETE DIALOG ═══ -->
-<div class="dialog-overlay" id="delete-dialog">
-  <div class="dialog">
-    <div class="dialog-icon">🗑</div>
-    <div class="dialog-title">Elimina birra</div>
-    <div class="dialog-text" id="delete-dialog-text">Vuoi davvero eliminarla?</div>
-    <div class="dialog-actions">
-      <button class="dialog-btn" id="delete-cancel">Annulla</button>
-      <button class="dialog-btn danger" id="delete-confirm">Elimina</button>
-    </div>
-  </div>
-</div>
-
-<!-- ═══ SNACKBAR ═══ -->
-<div id="snackbar"></div>
-
-
-
-
-<!-- ═══ PWA — Offline bar ═══ -->
-<div id="offline-bar">📡 Sei offline — la cantina è comunque disponibile</div>
-
-<!-- ═══ PWA — Install banner ═══ -->
-<div id="pwa-install-banner">
-  <span class="pwa-icon">🍺</span>
-  <div class="pwa-text">
-    <div class="pwa-title">Aggiungi alla Home</div>
-    <div class="pwa-sub">Accesso rapido, funziona offline</div>
-  </div>
-  <button class="pwa-btn" id="pwa-install-btn">Installa</button>
-  <button class="pwa-close" id="pwa-install-close">✕</button>
-</div>
-
-<!-- ═══ PWA — Update toast ═══ -->
-<div id="pwa-update-toast">
-  <span>🔄</span>
-  <span class="update-text">Nuova versione disponibile!</span>
-  <button class="update-btn" id="pwa-update-btn">Aggiorna</button>
-</div>
 
 </body>
+
 </html>

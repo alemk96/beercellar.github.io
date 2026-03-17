@@ -3,113 +3,149 @@
 // ═══════════════════════════════════════════════════════════
 
 const CATEGORIES = [
-  { id:'lager',      name:'Lager',              emoji:'🍺', color:'#D4A017' },
-  { id:'ale',        name:'Ale',                emoji:'🍻', color:'#D4882E' },
-  { id:'ipa',        name:'IPA',                emoji:'🌿', color:'#6B8F3E' },
-  { id:'stout',      name:'Stout & Porter',     emoji:'🖤', color:'#A08060' },
-  { id:'weizen',     name:'Weizen & Blanche',   emoji:'☁️', color:'#C8A84B' },
-  { id:'sour',       name:'Sour & Lambic',      emoji:'🍋', color:'#B5A014' },
-  { id:'trappist',   name:'Trappista & Abbey',  emoji:'⛪', color:'#8B4513' },
-  { id:'pilsner',    name:'Pilsner',             emoji:'🌾', color:'#C8B400' },
-  { id:'saison',     name:'Saison & Farmhouse', emoji:'🌻', color:'#D4A856' },
-  { id:'barleywine', name:'Barleywine',         emoji:'🥃', color:'#8B2020' },
-  { id:'radler',     name:'Radler & Shandy',    emoji:'🍊', color:'#E8952E' },
-  { id:'other',      name:'Altro',              emoji:'🔮', color:'#9E7B5A' },
+  { id: 'lager', name: 'Lager', emoji: '🍺', color: '#D4A017' },
+  { id: 'ale', name: 'Ale', emoji: '🍻', color: '#D4882E' },
+  { id: 'ipa', name: 'IPA', emoji: '🌿', color: '#6B8F3E' },
+  { id: 'stout', name: 'Stout & Porter', emoji: '🖤', color: '#A08060' },
+  { id: 'weizen', name: 'Weizen & Blanche', emoji: '☁️', color: '#C8A84B' },
+  { id: 'sour', name: 'Sour & Lambic', emoji: '🍋', color: '#B5A014' },
+  { id: 'trappist', name: 'Trappista & Abbey', emoji: '⛪', color: '#8B4513' },
+  { id: 'pilsner', name: 'Pilsner', emoji: '🌾', color: '#C8B400' },
+  { id: 'saison', name: 'Saison & Farmhouse', emoji: '🌻', color: '#D4A856' },
+  { id: 'barleywine', name: 'Barleywine', emoji: '🥃', color: '#8B2020' },
+  { id: 'radler', name: 'Radler & Shandy', emoji: '🍊', color: '#E8952E' },
+  { id: 'other', name: 'Altro', emoji: '🔮', color: '#9E7B5A' },
 ];
 const CAT_MAP = Object.fromEntries(CATEGORIES.map(c => [c.id, c]));
 
 // ── Tutti i rating e favorite azzerati ──
 const SAMPLE_BEERS = [
-  { name:'Kalopsia', brewery:'50&50 Craft Brewery', category:'ipa', rating:0, abv:5.6, ibu:40,
-    origin:'Varese, Italia', color:'Ambrata chiara limpida, testa bianca cremosa',
-    description:'APA (American Pale Ale) flagship del birrificio. Luppoli americani Cascade e Centennial donano classici aromi di pompelmo, resina e fiori d\'arancio. Maltatura caramellata presente ma discreta, a supporto dell\'amaro bilanciato e persistente.',
-    history:'"Kalopsia" in greco antico significa "visione distorta di bellezza". È la birra che ha lanciato il birrificio: con oltre 300 recensioni entusiaste è diventata l\'identità di 50&50, una piccola grande ossessione varesina.',
-    tried:false, favorite:false, notes:'' },
-  { name:'Danko', brewery:'50&50 Craft Brewery', category:'stout', rating:0, abv:8.0, ibu:25,
-    origin:'Varese, Italia', color:'Nero profondo con riflessi bruni, testa beige compatta',
-    description:'Baltic Porter di forza e complessità notevoli. Aromi intensi di cioccolato fondente, caffè espresso, frutta sotto spirito e tabacco. La fermentazione lager garantisce una pulizia straordinaria. Alcol perfettamente integrato. Corpo pieno e vellutato.',
-    history:'"Danko" omaggia il personaggio mitologico slavo che strappò il proprio cuore ardente dal petto per illuminare il cammino del suo popolo. Media di 4.86/5: la birra più amata del catalogo.',
-    tried:false, favorite:false, notes:'' },
-  { name:'United', brewery:'50&50 Craft Brewery', category:'ipa', rating:0, abv:5.8, ibu:40,
-    origin:'Varese, Italia', color:'Ambrata dorata brillante, testa bianca compatta',
-    description:'DDH West Coast IPA prodotta con doppio dry-hopping. L\'intensità aromatica è notevole: agrumi, frutta tropicale e note resinose di pino. Il profilo West Coast si esprime in un amaro secco, definitivo e prolungato.',
-    history:'"United" celebra l\'unione tra la tradizione West Coast californiana e la scena craft italiana. Il doppio dry-hopping massimizza gli aromi senza incrementare l\'amaro percepito.',
-    tried:false, favorite:false, notes:'' },
-  { name:'Man Bassa', brewery:'50&50 Craft Brewery', category:'pilsner', rating:0, abv:5.0, ibu:35,
-    origin:'Varese, Italia', color:'Paglierina dorata limpida, testa bianca abbondante',
-    description:'Pilsner di riferimento del birrificio: equilibrata, di grande bevibilità. Luppoli nobili Saaz conferiscono l\'aroma speziato e floreale tipico della tradizione boema.',
-    history:'"Man Bassa" è espressione colloquiale lombarda per indicare qualcosa di travolgente. Con una valutazione media di 4.56/5, il nome si è rivelato profetico.',
-    tried:false, favorite:false, notes:'' },
-  { name:'Graziella', brewery:'50&50 Craft Brewery', category:'lager', rating:0, abv:6.5, ibu:15,
-    origin:'Varese, Italia', color:'Dorata ambrata con riflessi vinosi, testa fine e persistente',
-    description:'Italian Grape Lager prodotta con mosto d\'uva. Note di frutta bianca, pesca e agrumi si fondono con la pulizia della fermentazione lager. Dolcezza vinosa soffusa, finale secco.',
-    history:'L\'Italian Grape Lager è uno stile inventato in Italia riconosciuto dalla guida BJCP. Graziella porta in lattina i vigneti lombardi: ibrido perfetto tra birreria e viticoltura.',
-    tried:false, favorite:false, notes:'' },
-  { name:'Nelson³', brewery:'50&50 Craft Brewery', category:'ipa', rating:0, abv:6.5, ibu:45,
-    origin:'Varese, Italia', color:'Dorata intensa con leggera velatura, testa bianca abbondante',
-    description:'New Zealand IPA interamente costruita sul luppolo Nelson Sauvin neozelandese, utilizzato in tripla dose. Esplosione aromatica di uva bianca, passion fruit e ribes. Corpo medio, amaro fresco e pulito.',
-    history:'Nelson Sauvin è il luppolo emblema della Nuova Zelanda, noto per un profilo che ricorda il Sauvignon Blanc. 50&50 ne esalta le caratteristiche attraverso una tripla aggiunta.',
-    tried:false, favorite:false, notes:'' },
-  { name:'Slomo', brewery:'50&50 Craft Brewery', category:'ipa', rating:0, abv:5.0, ibu:60,
-    origin:'Varese, Italia', color:'Dorata brillante con leggera velatura, testa bianca fine',
-    description:'New Zealand IPL (India Pale Lager): la precisione della fermentazione lager al servizio dell\'intensità luppolata neozelandese. Aroma vivace di frutta tropicale, kiwi e agrumi.',
-    history:'"Slomo" descrive la lenta fermentazione a basse temperature. L\'IPL è uno stile ibrido: processo lager, spirito IPA.',
-    tried:false, favorite:false, notes:'' },
-  { name:'Bosco 21030', brewery:'50&50 Craft Brewery', category:'lager', rating:0, abv:6.0, ibu:20,
-    origin:'Varese, Italia', color:'Ambrata rame con sfumature miele, testa avorio',
-    description:'Chestnut Lager prodotta con farina di castagne, ingrediente tipico dell\'entroterra varesino. Aroma avvolgente di castagne arrostite, nocciola e biscotto.',
-    history:'Il CAP 21030 identifica i comuni della Valceresio, area boschiva e castanicola a pochi km da Varese. I castagneti diventano ingrediente vivo in questa lager.',
-    tried:false, favorite:false, notes:'' },
-  { name:'Crisp', brewery:'50&50 Craft Brewery', category:'ale', rating:0, abv:5.0, ibu:32,
-    origin:'Varese, Italia', color:'Dorata con riflessi ambrati, testa bianca fine',
-    description:'Belgian Ale dal carattere elegante e beverino. Profumi floreali e fruttati tipici dei lieviti belgi, con note di agrumi e erbe aromatiche. Corpo medio, carbonazione vivace, finale secco.',
-    history:'50&50 nasce dalla passione di due soci al 50% ciascuno. Crisp rappresenta la loro lettura della tradizione belga: lieviti d\'importazione, ingredienti locali.',
-    tried:false, favorite:false, notes:'' },
-  { name:'Janie Jones', brewery:'50&50 Craft Brewery', category:'ipa', rating:0, abv:5.8, ibu:25,
-    origin:'Varese, Italia', color:'Ambrata chiara, testa bianca compatta',
-    description:'English IPA dalla personalità equilibrata e raffinata. Luppoli inglesi tradizionali regalano note erbacee, bergamotto e marmellata d\'arancia. L\'amaro è elegante, mai aggressivo.',
-    history:'Janie Jones è il titolo che apre il debut album dei The Clash (1977). 50&50 celebra la cultura UK con una birra che richiama i pub londinesi.',
-    tried:false, favorite:false, notes:'' },
-  { name:'Bee Serious', brewery:'50&50 Craft Brewery', category:'lager', rating:0, abv:6.5, ibu:20,
-    origin:'Varese, Italia', color:'Dorata ambrata brillante con testa color miele',
-    description:'Honey Lager che unisce la pulizia della fermentazione lager all\'aromaticità delicata del miele naturale. Note floreali e di nettare, corpo morbido e rotondo.',
-    history:'Il nome gioca sul doppio senso inglese "Bee" (ape) e "Be" (sii). Utilizza miele locale della zona varesina.',
-    tried:false, favorite:false, notes:'' },
-  { name:'Drama', brewery:'50&50 Craft Brewery', category:'lager', rating:0, abv:5.2, ibu:0,
-    origin:'Varese, Italia', color:'Bruno scuro con riflessi rubino, testa beige persistente',
-    description:'Tmavý Ležák, ovvero la lager scura boema per eccellenza. Malti scuri e Vienna conferiscono note di pane tostato, caramello e cioccolato al latte.',
-    history:'"Tmavý Ležák" significa "lager scura" in ceco. 50&50 porta il carattere di Praga sulle rive del Lago di Varese.',
-    tried:false, favorite:false, notes:'' },
-  { name:'Frank You', brewery:'50&50 Craft Brewery', category:'other', rating:0, abv:5.3, ibu:22,
-    origin:'Varese, Italia', color:'Ambrata con riflessi ramati, testa compatta',
-    description:'Rauch Beer: la birra affumicata tedesca in versione 50&50. Il malto affumicato al legno di faggio dona aromi di prosciutto crudo e fumo dolce.',
-    history:'Le Rauchbier nascono a Bamberga, Franconia. "Frank You" è un gioco di parole: Franconia (Frank) incontra il ringraziamento ironico.',
-    tried:false, favorite:false, notes:'' },
-  { name:'Kellerona', brewery:'50&50 Craft Brewery', category:'lager', rating:0, abv:5.0, ibu:15,
-    origin:'Varese, Italia', color:'Dorata torbida non filtrata, testa bianca abbondante',
-    description:'Kellerbier non filtrata. Erbaceo e floreale all\'aroma, con note di lievito fresco e grano. Morbida, dissetante, con carbonazione contenuta.',
-    history:'"Keller" (cantina in tedesco) indica una birra non filtrata. La "-ona" finale è il suffisso italiano accrescitivo affettuoso.',
-    tried:false, favorite:false, notes:'' },
-  { name:'McBlack', brewery:'50&50 Craft Brewery', category:'ale', rating:0, abv:8.0, ibu:25,
-    origin:'Varese, Italia', color:'Mogano scuro quasi nero, testa beige persistente',
-    description:'Scotch Ale dall\'anima forte e avvolgente. Malti scuri tostati con note di cioccolato fondente, caramello bruciato e prugna. Birra da meditazione.',
-    history:'"Mc" è il prefisso scozzese per eccellenza. La Scotch Ale (Wee Heavy) è progettata per riscaldare nei climi rigidi.',
-    tried:false, favorite:false, notes:'' },
-  { name:'Cowboy Kirk', brewery:'50&50 Craft Brewery', category:'ipa', rating:0, abv:5.5, ibu:45,
-    origin:'Varese, Italia', color:'Nera con riflessi bruni, testa cremosa nocciola',
-    description:'Black IPA che fonde l\'intensità del malto torrefatto con l\'aggressività luppolata americana. Aroma di caffè, cioccolato fondente e resina.',
-    history:'La Black IPA rompe le regole, mescolando tradizione inglese e aggressività americana. Cowboy Kirk è un fuorilegge che non rispetta le categorie.',
-    tried:false, favorite:false, notes:'' },
-  { name:'Italian Pils', brewery:'50&50 Craft Brewery', category:'pilsner', rating:0, abv:4.5, ibu:35,
-    origin:'Varese, Italia', color:'Paglierina brillante, testa bianca fine e persistente',
-    description:'Interpretazione italiana dello stile pilsner: luppoli italiani conferiscono un aroma floreale e speziato insolito rispetto alla tradizione boema.',
-    history:'L\'Italian Pils reinterpreta la tradizione con luppoli autoctoni italiani. 50&50 abbraccia questa corrente con convinzione.',
-    tried:false, favorite:false, notes:'' },
-  { name:'Better Call Welly', brewery:'50&50 Craft Brewery', category:'ale', rating:0, abv:4.2, ibu:0,
-    origin:'Varese, Italia', color:'Ambrata ramata, testa avorio compatta',
-    description:'English Bitter di facile bevibilità, omaggio alla tradizione dei pub britannici. Maltatura biscottata e caramellata, luppoli erbacei e terrosi.',
-    history:'"Better Call Welly" rimanda alla cultura pub inglese dove il Bitter è la birra per eccellenza. Bassa gradazione, alta bevibilità.',
-    tried:false, favorite:false, notes:'' },
+  {
+    name: 'Kalopsia', brewery: '50&50 Craft Brewery', category: 'ipa', rating: 0, abv: 5.6, ibu: 40,
+    origin: 'Varese, Italia', color: 'Ambrata chiara limpida, testa bianca cremosa',
+    description: 'APA (American Pale Ale) flagship del birrificio. Luppoli americani Cascade e Centennial donano classici aromi di pompelmo, resina e fiori d\'arancio. Maltatura caramellata presente ma discreta, a supporto dell\'amaro bilanciato e persistente.',
+    history: '"Kalopsia" in greco antico significa "visione distorta di bellezza". È la birra che ha lanciato il birrificio: con oltre 300 recensioni entusiaste è diventata l\'identità di 50&50, una piccola grande ossessione varesina.',
+    tried: false, favorite: false, notes: ''
+  },
+  {
+    name: 'Danko', brewery: '50&50 Craft Brewery', category: 'stout', rating: 0, abv: 8.0, ibu: 25,
+    origin: 'Varese, Italia', color: 'Nero profondo con riflessi bruni, testa beige compatta',
+    description: 'Baltic Porter di forza e complessità notevoli. Aromi intensi di cioccolato fondente, caffè espresso, frutta sotto spirito e tabacco. La fermentazione lager garantisce una pulizia straordinaria. Alcol perfettamente integrato. Corpo pieno e vellutato.',
+    history: '"Danko" omaggia il personaggio mitologico slavo che strappò il proprio cuore ardente dal petto per illuminare il cammino del suo popolo. Media di 4.86/5: la birra più amata del catalogo.',
+    tried: false, favorite: false, notes: ''
+  },
+  {
+    name: 'United', brewery: '50&50 Craft Brewery', category: 'ipa', rating: 0, abv: 5.8, ibu: 40,
+    origin: 'Varese, Italia', color: 'Ambrata dorata brillante, testa bianca compatta',
+    description: 'DDH West Coast IPA prodotta con doppio dry-hopping. L\'intensità aromatica è notevole: agrumi, frutta tropicale e note resinose di pino. Il profilo West Coast si esprime in un amaro secco, definitivo e prolungato.',
+    history: '"United" celebra l\'unione tra la tradizione West Coast californiana e la scena craft italiana. Il doppio dry-hopping massimizza gli aromi senza incrementare l\'amaro percepito.',
+    tried: false, favorite: false, notes: ''
+  },
+  {
+    name: 'Man Bassa', brewery: '50&50 Craft Brewery', category: 'pilsner', rating: 0, abv: 5.0, ibu: 35,
+    origin: 'Varese, Italia', color: 'Paglierina dorata limpida, testa bianca abbondante',
+    description: 'Pilsner di riferimento del birrificio: equilibrata, di grande bevibilità. Luppoli nobili Saaz conferiscono l\'aroma speziato e floreale tipico della tradizione boema.',
+    history: '"Man Bassa" è espressione colloquiale lombarda per indicare qualcosa di travolgente. Con una valutazione media di 4.56/5, il nome si è rivelato profetico.',
+    tried: false, favorite: false, notes: ''
+  },
+  {
+    name: 'Graziella', brewery: '50&50 Craft Brewery', category: 'lager', rating: 0, abv: 6.5, ibu: 15,
+    origin: 'Varese, Italia', color: 'Dorata ambrata con riflessi vinosi, testa fine e persistente',
+    description: 'Italian Grape Lager prodotta con mosto d\'uva. Note di frutta bianca, pesca e agrumi si fondono con la pulizia della fermentazione lager. Dolcezza vinosa soffusa, finale secco.',
+    history: 'L\'Italian Grape Lager è uno stile inventato in Italia riconosciuto dalla guida BJCP. Graziella porta in lattina i vigneti lombardi: ibrido perfetto tra birreria e viticoltura.',
+    tried: false, favorite: false, notes: ''
+  },
+  {
+    name: 'Nelson³', brewery: '50&50 Craft Brewery', category: 'ipa', rating: 0, abv: 6.5, ibu: 45,
+    origin: 'Varese, Italia', color: 'Dorata intensa con leggera velatura, testa bianca abbondante',
+    description: 'New Zealand IPA interamente costruita sul luppolo Nelson Sauvin neozelandese, utilizzato in tripla dose. Esplosione aromatica di uva bianca, passion fruit e ribes. Corpo medio, amaro fresco e pulito.',
+    history: 'Nelson Sauvin è il luppolo emblema della Nuova Zelanda, noto per un profilo che ricorda il Sauvignon Blanc. 50&50 ne esalta le caratteristiche attraverso una tripla aggiunta.',
+    tried: false, favorite: false, notes: ''
+  },
+  {
+    name: 'Slomo', brewery: '50&50 Craft Brewery', category: 'ipa', rating: 0, abv: 5.0, ibu: 60,
+    origin: 'Varese, Italia', color: 'Dorata brillante con leggera velatura, testa bianca fine',
+    description: 'New Zealand IPL (India Pale Lager): la precisione della fermentazione lager al servizio dell\'intensità luppolata neozelandese. Aroma vivace di frutta tropicale, kiwi e agrumi.',
+    history: '"Slomo" descrive la lenta fermentazione a basse temperature. L\'IPL è uno stile ibrido: processo lager, spirito IPA.',
+    tried: false, favorite: false, notes: ''
+  },
+  {
+    name: 'Bosco 21030', brewery: '50&50 Craft Brewery', category: 'lager', rating: 0, abv: 6.0, ibu: 20,
+    origin: 'Varese, Italia', color: 'Ambrata rame con sfumature miele, testa avorio',
+    description: 'Chestnut Lager prodotta con farina di castagne, ingrediente tipico dell\'entroterra varesino. Aroma avvolgente di castagne arrostite, nocciola e biscotto.',
+    history: 'Il CAP 21030 identifica i comuni della Valceresio, area boschiva e castanicola a pochi km da Varese. I castagneti diventano ingrediente vivo in questa lager.',
+    tried: false, favorite: false, notes: ''
+  },
+  {
+    name: 'Crisp', brewery: '50&50 Craft Brewery', category: 'ale', rating: 0, abv: 5.0, ibu: 32,
+    origin: 'Varese, Italia', color: 'Dorata con riflessi ambrati, testa bianca fine',
+    description: 'Belgian Ale dal carattere elegante e beverino. Profumi floreali e fruttati tipici dei lieviti belgi, con note di agrumi e erbe aromatiche. Corpo medio, carbonazione vivace, finale secco.',
+    history: '50&50 nasce dalla passione di due soci al 50% ciascuno. Crisp rappresenta la loro lettura della tradizione belga: lieviti d\'importazione, ingredienti locali.',
+    tried: false, favorite: false, notes: ''
+  },
+  {
+    name: 'Janie Jones', brewery: '50&50 Craft Brewery', category: 'ipa', rating: 0, abv: 5.8, ibu: 25,
+    origin: 'Varese, Italia', color: 'Ambrata chiara, testa bianca compatta',
+    description: 'English IPA dalla personalità equilibrata e raffinata. Luppoli inglesi tradizionali regalano note erbacee, bergamotto e marmellata d\'arancia. L\'amaro è elegante, mai aggressivo.',
+    history: 'Janie Jones è il titolo che apre il debut album dei The Clash (1977). 50&50 celebra la cultura UK con una birra che richiama i pub londinesi.',
+    tried: false, favorite: false, notes: ''
+  },
+  {
+    name: 'Bee Serious', brewery: '50&50 Craft Brewery', category: 'lager', rating: 0, abv: 6.5, ibu: 20,
+    origin: 'Varese, Italia', color: 'Dorata ambrata brillante con testa color miele',
+    description: 'Honey Lager che unisce la pulizia della fermentazione lager all\'aromaticità delicata del miele naturale. Note floreali e di nettare, corpo morbido e rotondo.',
+    history: 'Il nome gioca sul doppio senso inglese "Bee" (ape) e "Be" (sii). Utilizza miele locale della zona varesina.',
+    tried: false, favorite: false, notes: ''
+  },
+  {
+    name: 'Drama', brewery: '50&50 Craft Brewery', category: 'lager', rating: 0, abv: 5.2, ibu: 0,
+    origin: 'Varese, Italia', color: 'Bruno scuro con riflessi rubino, testa beige persistente',
+    description: 'Tmavý Ležák, ovvero la lager scura boema per eccellenza. Malti scuri e Vienna conferiscono note di pane tostato, caramello e cioccolato al latte.',
+    history: '"Tmavý Ležák" significa "lager scura" in ceco. 50&50 porta il carattere di Praga sulle rive del Lago di Varese.',
+    tried: false, favorite: false, notes: ''
+  },
+  {
+    name: 'Frank You', brewery: '50&50 Craft Brewery', category: 'other', rating: 0, abv: 5.3, ibu: 22,
+    origin: 'Varese, Italia', color: 'Ambrata con riflessi ramati, testa compatta',
+    description: 'Rauch Beer: la birra affumicata tedesca in versione 50&50. Il malto affumicato al legno di faggio dona aromi di prosciutto crudo e fumo dolce.',
+    history: 'Le Rauchbier nascono a Bamberga, Franconia. "Frank You" è un gioco di parole: Franconia (Frank) incontra il ringraziamento ironico.',
+    tried: false, favorite: false, notes: ''
+  },
+  {
+    name: 'Kellerona', brewery: '50&50 Craft Brewery', category: 'lager', rating: 0, abv: 5.0, ibu: 15,
+    origin: 'Varese, Italia', color: 'Dorata torbida non filtrata, testa bianca abbondante',
+    description: 'Kellerbier non filtrata. Erbaceo e floreale all\'aroma, con note di lievito fresco e grano. Morbida, dissetante, con carbonazione contenuta.',
+    history: '"Keller" (cantina in tedesco) indica una birra non filtrata. La "-ona" finale è il suffisso italiano accrescitivo affettuoso.',
+    tried: false, favorite: false, notes: ''
+  },
+  {
+    name: 'McBlack', brewery: '50&50 Craft Brewery', category: 'ale', rating: 0, abv: 8.0, ibu: 25,
+    origin: 'Varese, Italia', color: 'Mogano scuro quasi nero, testa beige persistente',
+    description: 'Scotch Ale dall\'anima forte e avvolgente. Malti scuri tostati con note di cioccolato fondente, caramello bruciato e prugna. Birra da meditazione.',
+    history: '"Mc" è il prefisso scozzese per eccellenza. La Scotch Ale (Wee Heavy) è progettata per riscaldare nei climi rigidi.',
+    tried: false, favorite: false, notes: ''
+  },
+  {
+    name: 'Cowboy Kirk', brewery: '50&50 Craft Brewery', category: 'ipa', rating: 0, abv: 5.5, ibu: 45,
+    origin: 'Varese, Italia', color: 'Nera con riflessi bruni, testa cremosa nocciola',
+    description: 'Black IPA che fonde l\'intensità del malto torrefatto con l\'aggressività luppolata americana. Aroma di caffè, cioccolato fondente e resina.',
+    history: 'La Black IPA rompe le regole, mescolando tradizione inglese e aggressività americana. Cowboy Kirk è un fuorilegge che non rispetta le categorie.',
+    tried: false, favorite: false, notes: ''
+  },
+  {
+    name: 'Italian Pils', brewery: '50&50 Craft Brewery', category: 'pilsner', rating: 0, abv: 4.5, ibu: 35,
+    origin: 'Varese, Italia', color: 'Paglierina brillante, testa bianca fine e persistente',
+    description: 'Interpretazione italiana dello stile pilsner: luppoli italiani conferiscono un aroma floreale e speziato insolito rispetto alla tradizione boema.',
+    history: 'L\'Italian Pils reinterpreta la tradizione con luppoli autoctoni italiani. 50&50 abbraccia questa corrente con convinzione.',
+    tried: false, favorite: false, notes: ''
+  },
+  {
+    name: 'Better Call Welly', brewery: '50&50 Craft Brewery', category: 'ale', rating: 0, abv: 4.2, ibu: 0,
+    origin: 'Varese, Italia', color: 'Ambrata ramata, testa avorio compatta',
+    description: 'English Bitter di facile bevibilità, omaggio alla tradizione dei pub britannici. Maltatura biscottata e caramellata, luppoli erbacei e terrosi.',
+    history: '"Better Call Welly" rimanda alla cultura pub inglese dove il Bitter è la birra per eccellenza. Bassa gradazione, alta bevibilità.',
+    tried: false, favorite: false, notes: ''
+  },
 ];
 
 // ═══════════════════════════════════════════════════════════
@@ -139,7 +175,7 @@ function load() {
   try {
     const raw = localStorage.getItem(LS_KEY);
     if (raw) { state.beers = JSON.parse(raw); }
-    else      { seed(); }
+    else { seed(); }
   } catch { seed(); }
 }
 function seed() {
@@ -163,9 +199,9 @@ async function exportData() {
     },
     beers: state.beers,
   };
-  const json     = JSON.stringify(payload, null, 2);
-  const blob     = new Blob([json], { type: 'application/json' });
-  const filename = `50e50-cellar-${new Date().toISOString().slice(0,10)}.json`;
+  const json = JSON.stringify(payload, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const filename = `50e50-cellar-${new Date().toISOString().slice(0, 10)}.json`;
 
   if ('showSaveFilePicker' in window) {
     try {
@@ -188,7 +224,7 @@ async function exportData() {
   }
   // Fallback: download diretto
   const url = URL.createObjectURL(blob);
-  const a   = document.createElement('a');
+  const a = document.createElement('a');
   a.href = url; a.download = filename;
   document.body.appendChild(a);
   a.click();
@@ -243,21 +279,21 @@ function handleImportFile(file) {
 
     // ── Field sanitization: garantisce i campi minimi ──────
     const sanitize = (b, fallbackId) => ({
-      id:          typeof b.id === 'number' ? b.id : fallbackId,
-      dateAdded:   typeof b.dateAdded === 'number' ? b.dateAdded : Date.now(),
-      name:        String(b.name        || '').trim(),
-      brewery:     String(b.brewery     || '').trim(),
-      category:    CAT_MAP[b.category]  ? b.category : 'other',
-      rating:      typeof b.rating === 'number' ? Math.min(5, Math.max(0, b.rating)) : 0,
-      abv:         parseFloat(b.abv)    || 0,
-      ibu:         parseInt(b.ibu)      || 0,
-      origin:      String(b.origin      || '').trim(),
-      color:       String(b.color       || '').trim(),
+      id: typeof b.id === 'number' ? b.id : fallbackId,
+      dateAdded: typeof b.dateAdded === 'number' ? b.dateAdded : Date.now(),
+      name: String(b.name || '').trim(),
+      brewery: String(b.brewery || '').trim(),
+      category: CAT_MAP[b.category] ? b.category : 'other',
+      rating: typeof b.rating === 'number' ? Math.min(5, Math.max(0, b.rating)) : 0,
+      abv: parseFloat(b.abv) || 0,
+      ibu: parseInt(b.ibu) || 0,
+      origin: String(b.origin || '').trim(),
+      color: String(b.color || '').trim(),
       description: String(b.description || '').trim(),
-      history:     String(b.history     || '').trim(),
-      notes:       String(b.notes       || '').trim(),
-      tried:       !!b.tried,
-      favorite:    !!b.favorite,
+      history: String(b.history || '').trim(),
+      notes: String(b.notes || '').trim(),
+      tried: !!b.tried,
+      favorite: !!b.favorite,
     });
 
     let idCursor = Date.now();
@@ -327,10 +363,10 @@ function navigate(view, opts = {}) {
     n.classList.toggle('active', n.dataset.view === view);
   });
 
-  if (view === 'home')   renderHome();
-  if (view === 'stats')  renderStats();
+  if (view === 'home') renderHome();
+  if (view === 'stats') renderStats();
   if (view === 'detail') renderDetail(opts.id);
-  if (view === 'add')    renderAdd(opts.id || null);
+  if (view === 'add') renderAdd(opts.id || null);
 
   window.scrollTo(0, 0);
 }
@@ -355,12 +391,12 @@ function renderStars(rating, size = 'sm') {
 }
 
 function ratingLabel(r) {
-  if (!r)       return 'Tocca le stelle per valutare';
-  if (r < 1.5)  return 'Non è per me';
-  if (r < 2.5)  return 'Nella media';
-  if (r < 3.5)  return 'Discreta';
-  if (r < 4.5)  return 'Ottima!';
-  if (r < 5.0)  return 'Quasi perfetta';
+  if (!r) return 'Tocca le stelle per valutare';
+  if (r < 1.5) return 'Non è per me';
+  if (r < 2.5) return 'Nella media';
+  if (r < 3.5) return 'Discreta';
+  if (r < 4.5) return 'Ottima!';
+  if (r < 5.0) return 'Quasi perfetta';
   return 'Capolavoro assoluto!';
 }
 
@@ -383,18 +419,18 @@ function getFilteredBeers() {
   const q = state.searchQuery.trim().toLowerCase();
   if (q) beers = beers.filter(b =>
     b.name.toLowerCase().includes(q) ||
-    (b.brewery||'').toLowerCase().includes(q) ||
-    (b.origin||'').toLowerCase().includes(q));
+    (b.brewery || '').toLowerCase().includes(q) ||
+    (b.origin || '').toLowerCase().includes(q));
   if (state.selectedCategory)
     beers = beers.filter(b => b.category === state.selectedCategory);
-  if (state.filterType === 'tried')     beers = beers.filter(b => b.tried);
+  if (state.filterType === 'tried') beers = beers.filter(b => b.tried);
   if (state.filterType === 'favorites') beers = beers.filter(b => b.favorite);
 
   switch (state.sortOrder) {
-    case 'date_desc':   beers.sort((a,b) => b.dateAdded - a.dateAdded); break;
-    case 'rating_desc': beers.sort((a,b) => b.rating - a.rating);        break;
-    case 'name_asc':    beers.sort((a,b) => a.name.localeCompare(b.name)); break;
-    case 'brewery_asc': beers.sort((a,b) => (a.brewery||'').localeCompare(b.brewery||'')); break;
+    case 'date_desc': beers.sort((a, b) => b.dateAdded - a.dateAdded); break;
+    case 'rating_desc': beers.sort((a, b) => b.rating - a.rating); break;
+    case 'name_asc': beers.sort((a, b) => a.name.localeCompare(b.name)); break;
+    case 'brewery_asc': beers.sort((a, b) => (a.brewery || '').localeCompare(b.brewery || '')); break;
   }
   return beers;
 }
@@ -429,7 +465,7 @@ function renderCategoryChips() {
 
 function renderBeerList() {
   const beers = getFilteredBeers();
-  const el    = document.getElementById('beer-list');
+  const el = document.getElementById('beer-list');
   const count = document.getElementById('beer-count');
   count.textContent = beers.length
     ? `${beers.length} birr${beers.length === 1 ? 'a' : 'e'}`
@@ -466,8 +502,8 @@ function renderBeerList() {
         ${b.abv > 0 ? makeBadge(`${parseFloat(b.abv).toFixed(1)}%`, '#F4C840') : ''}
         <span style="flex:1"></span>
         ${b.rating > 0
-          ? `${renderStars(b.rating)} <span style="font-size:0.76rem;color:var(--gold);font-weight:700;margin-left:3px">${b.rating.toFixed(1)}</span>`
-          : `<span style="font-size:0.7rem;color:var(--muted);font-family:var(--font-sub);letter-spacing:0.04em">Non valutata</span>`}
+        ? `${renderStars(b.rating)} <span style="font-size:0.76rem;color:var(--gold);font-weight:700;margin-left:3px">${b.rating.toFixed(1)}</span>`
+        : `<span style="font-size:0.7rem;color:var(--muted);font-family:var(--font-sub);letter-spacing:0.04em">Non valutata</span>`}
       </div>
     </div>`;
   }).join('');
@@ -479,8 +515,8 @@ function renderBeerList() {
 
 function esc(s) {
   return String(s || '')
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -497,8 +533,8 @@ function renderDetail(id) {
   let badges = makeBadge(cat.name, cat.color);
   if (b.abv > 0) badges += makeBadge(`${parseFloat(b.abv).toFixed(1)}% ABV`, '#F4C840');
   if (b.ibu > 0) badges += makeBadge(`${b.ibu} IBU`, '#8ABF40');
-  if (b.origin)  badges += makeBadge(`📍 ${b.origin}`, '#A08060');
-  if (b.color)   badges += makeBadge(b.color, '#8A7A64');
+  if (b.origin) badges += makeBadge(`📍 ${b.origin}`, '#A08060');
+  if (b.color) badges += makeBadge(b.color, '#8A7A64');
 
   const html = `
     <div class="detail-hero" style="--cat-color:${cat.color}">
@@ -575,23 +611,23 @@ function renderAdd(editId) {
   state.editingId = editId;
   const b = editId ? state.beers.find(x => x.id === editId) : null;
 
-  document.getElementById('add-title').textContent   = b ? 'Modifica birra' : 'Nuova birra';
-  document.getElementById('save-icon').textContent   = b ? '✓' : '＋';
-  document.getElementById('save-label').textContent  = b ? 'Salva modifiche' : 'Aggiungi birra';
+  document.getElementById('add-title').textContent = b ? 'Modifica birra' : 'Nuova birra';
+  document.getElementById('save-icon').textContent = b ? '✓' : '＋';
+  document.getElementById('save-label').textContent = b ? 'Salva modifiche' : 'Aggiungi birra';
 
-  document.getElementById('f-name').value     = b?.name        || '';
-  document.getElementById('f-brewery').value  = b?.brewery     || '';
-  document.getElementById('f-origin').value   = b?.origin      || '';
-  document.getElementById('f-abv').value      = b?.abv         || '';
-  document.getElementById('f-ibu').value      = b?.ibu         || '';
-  document.getElementById('f-color').value    = b?.color       || '';
-  document.getElementById('f-desc').value     = b?.description || '';
-  document.getElementById('f-history').value  = b?.history     || '';
-  document.getElementById('f-notes').value    = b?.notes       || '';
-  document.getElementById('f-tried').checked  = b ? b.tried    : false;
-  document.getElementById('f-fav').checked    = b?.favorite    || false;
+  document.getElementById('f-name').value = b?.name || '';
+  document.getElementById('f-brewery').value = b?.brewery || '';
+  document.getElementById('f-origin').value = b?.origin || '';
+  document.getElementById('f-abv').value = b?.abv || '';
+  document.getElementById('f-ibu').value = b?.ibu || '';
+  document.getElementById('f-color').value = b?.color || '';
+  document.getElementById('f-desc').value = b?.description || '';
+  document.getElementById('f-history').value = b?.history || '';
+  document.getElementById('f-notes').value = b?.notes || '';
+  document.getElementById('f-tried').checked = b ? b.tried : false;
+  document.getElementById('f-fav').checked = b?.favorite || false;
 
-  state.formRating   = b?.rating   || 0;
+  state.formRating = b?.rating || 0;
   state.formCategory = b?.category || 'lager';
 
   updateCatSelector();
@@ -606,8 +642,8 @@ function renderAdd(editId) {
 function updateCatSelector() {
   const cat = getCat(state.formCategory);
   document.getElementById('cat-sel-emoji').textContent = cat.emoji;
-  document.getElementById('cat-sel-name').textContent  = cat.name;
-  document.getElementById('cat-sel-name').style.color  = cat.color;
+  document.getElementById('cat-sel-name').textContent = cat.name;
+  document.getElementById('cat-sel-name').style.color = cat.color;
 }
 
 function validateForm() {
@@ -629,14 +665,14 @@ function buildStarPicker(containerId, currentRating, onChange) {
     el.innerHTML = '';
     for (let i = 1; i <= 5; i++) {
       const filled = rating >= i;
-      const half   = !filled && rating >= i - 0.5;
-      const unit   = document.createElement('div');
+      const half = !filled && rating >= i - 0.5;
+      const unit = document.createElement('div');
       unit.className = 'star-unit';
 
       const full = document.createElement('span');
       full.className = 'star-full';
       full.textContent = (filled || half) ? '⭐' : '☆';
-      full.style.filter  = (filled || half) ? 'saturate(1)' : 'saturate(0)';
+      full.style.filter = (filled || half) ? 'saturate(1)' : 'saturate(0)';
       full.style.opacity = (filled || half) ? '1' : '0.25';
       full.addEventListener('click', () => { rating = i; onChange(rating); render(); });
 
@@ -665,10 +701,10 @@ function buildStarPicker(containerId, currentRating, onChange) {
 function renderStats() {
   const beers = state.beers;
   const tried = beers.filter(b => b.tried);
-  const favs  = beers.filter(b => b.favorite);
+  const favs = beers.filter(b => b.favorite);
   const rated = tried.filter(b => b.rating > 0);
-  const avgR  = rated.length ? rated.reduce((a,b) => a + b.rating, 0) / rated.length : 0;
-  const cats  = new Set(beers.map(b => b.category)).size;
+  const avgR = rated.length ? rated.reduce((a, b) => a + b.rating, 0) / rated.length : 0;
+  const cats = new Set(beers.map(b => b.category)).size;
 
   document.getElementById('kpi-grid').innerHTML = `
     <div class="kpi-card" style="--kpi-color:var(--amber)">
@@ -689,19 +725,19 @@ function renderStats() {
     </div>`;
 
   const topEl = document.getElementById('stats-top');
-  const top5  = [...beers].filter(b => b.rating > 0).sort((a,b) => b.rating - a.rating).slice(0,5);
+  const top5 = [...beers].filter(b => b.rating > 0).sort((a, b) => b.rating - a.rating).slice(0, 5);
   if (top5.length) {
-    const medals = ['🥇','🥈','🥉'];
+    const medals = ['🥇', '🥈', '🥉'];
     topEl.innerHTML = `<div class="stats-section-title">🏆 Top ${top5.length} birre</div>` +
-      top5.map((b,i) => {
+      top5.map((b, i) => {
         const cat = getCat(b.category);
         return `
         <div class="top-item">
-          <div class="top-rank">${medals[i] || String(i+1)}</div>
+          <div class="top-rank">${medals[i] || String(i + 1)}</div>
           <div class="top-emoji">${cat.emoji}</div>
           <div class="top-meta">
             <div class="top-name">${esc(b.name)}</div>
-            <div class="top-brewery">${esc(b.brewery||'')}</div>
+            <div class="top-brewery">${esc(b.brewery || '')}</div>
           </div>
           ${renderStars(b.rating)}
           <span style="font-size:0.76rem;color:var(--gold);font-weight:700;margin-left:4px">${b.rating.toFixed(1)}</span>
@@ -717,21 +753,21 @@ function renderStats() {
   }
 
   const barsEl = document.getElementById('stats-bars');
-  const bycat  = CATEGORIES
-    .map(c => ({ cat:c, count: beers.filter(b => b.category === c.id).length }))
+  const bycat = CATEGORIES
+    .map(c => ({ cat: c, count: beers.filter(b => b.category === c.id).length }))
     .filter(x => x.count > 0)
-    .sort((a,b) => b.count - a.count);
+    .sort((a, b) => b.count - a.count);
   const maxC = Math.max(...bycat.map(x => x.count), 1);
 
   if (bycat.length) {
     barsEl.innerHTML = `<div class="stats-section-title">📊 Per stile</div>
       <div class="section-card">
-      ${bycat.map(({cat,count}) => `
+      ${bycat.map(({ cat, count }) => `
         <div class="bar-row">
           <span class="bar-emoji">${cat.emoji}</span>
           <span class="bar-label">${cat.name}</span>
           <div class="bar-track">
-            <div class="bar-fill" style="width:${(count/maxC*100).toFixed(1)}%;background:linear-gradient(90deg,${cat.color},${cat.color}66)"></div>
+            <div class="bar-fill" style="width:${(count / maxC * 100).toFixed(1)}%;background:linear-gradient(90deg,${cat.color},${cat.color}66)"></div>
           </div>
           <span class="bar-count" style="color:${cat.color}">${count}</span>
         </div>`).join('')}
@@ -758,25 +794,25 @@ function saveBeer() {
   const name = document.getElementById('f-name').value.trim();
   if (!name) return;
 
-  const isEdit   = !!state.editingId;
+  const isEdit = !!state.editingId;
   const existing = isEdit ? state.beers.find(b => b.id === state.editingId) : null;
 
   const beer = {
-    id:          existing?.id        || uid(),
-    dateAdded:   existing?.dateAdded || Date.now(),
+    id: existing?.id || uid(),
+    dateAdded: existing?.dateAdded || Date.now(),
     name,
-    brewery:     document.getElementById('f-brewery').value.trim(),
-    category:    state.formCategory,
-    rating:      state.formRating,
-    abv:         parseFloat(document.getElementById('f-abv').value) || 0,
-    ibu:         parseInt(document.getElementById('f-ibu').value)   || 0,
-    origin:      document.getElementById('f-origin').value.trim(),
-    color:       document.getElementById('f-color').value.trim(),
+    brewery: document.getElementById('f-brewery').value.trim(),
+    category: state.formCategory,
+    rating: state.formRating,
+    abv: parseFloat(document.getElementById('f-abv').value) || 0,
+    ibu: parseInt(document.getElementById('f-ibu').value) || 0,
+    origin: document.getElementById('f-origin').value.trim(),
+    color: document.getElementById('f-color').value.trim(),
     description: document.getElementById('f-desc').value.trim(),
-    history:     document.getElementById('f-history').value.trim(),
-    notes:       document.getElementById('f-notes').value.trim(),
-    tried:       document.getElementById('f-tried').checked,
-    favorite:    document.getElementById('f-fav').checked,
+    history: document.getElementById('f-history').value.trim(),
+    notes: document.getElementById('f-notes').value.trim(),
+    tried: document.getElementById('f-tried').checked,
+    favorite: document.getElementById('f-fav').checked,
   };
 
   if (isEdit) {
@@ -919,9 +955,9 @@ function wire() {
   });
 
   // Import dialog actions
-  document.getElementById('import-merge').addEventListener('click',   () => applyImport('merge'));
+  document.getElementById('import-merge').addEventListener('click', () => applyImport('merge'));
   document.getElementById('import-replace').addEventListener('click', () => applyImport('replace'));
-  document.getElementById('import-cancel').addEventListener('click',  () => {
+  document.getElementById('import-cancel').addEventListener('click', () => {
     _importPending = null;
     document.getElementById('import-dialog').classList.remove('open');
   });
@@ -935,7 +971,7 @@ function wire() {
 
 function openCatSheet() {
   const overlay = document.getElementById('cat-overlay');
-  const list    = document.getElementById('cat-sheet-list');
+  const list = document.getElementById('cat-sheet-list');
   list.innerHTML = CATEGORIES.map(c => `
     <div class="sheet-item ${state.formCategory === c.id ? 'active' : ''}" data-cat="${c.id}"
          style="${state.formCategory === c.id ? `--cat-color:${c.color}` : ''}">
@@ -1073,7 +1109,7 @@ navigate('home');
     }
   }
 
-  window.addEventListener('online',  updateOnlineStatus);
+  window.addEventListener('online', updateOnlineStatus);
   window.addEventListener('offline', updateOnlineStatus);
   updateOnlineStatus(); // check at startup
 
@@ -1081,7 +1117,7 @@ navigate('home');
   function handleUrlAction() {
     const params = new URLSearchParams(window.location.search);
     const action = params.get('action');
-    if (action === 'add')   { navigate('add'); }
+    if (action === 'add') { navigate('add'); }
     if (action === 'stats') { navigate('stats'); }
   }
 
